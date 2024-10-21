@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { sequelize } = require('./models/database');
 const path = require('path');
 const { Client, GatewayIntentBits, REST, Routes, Collection } = require('discord.js');
 require('dotenv').config();
@@ -26,6 +27,14 @@ for (const file of commandFiles) {
   commands.push(command.data.toJSON());
 }
 
+const loadEvents = (client) => {
+  const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+  for (const file of eventFiles) {
+    const event = require(`./events/${file}`);
+    client.on(event.name, (...args) => event.execute(...args));
+  }
+};
+
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
 
@@ -43,6 +52,8 @@ client.once('ready', async () => {
   } catch (error) {
     console.error('Error deploying commands:', error);
   }
+
+  loadEvents(client);
 });
 
 client.on('interactionCreate', async interaction => {

@@ -23,6 +23,7 @@ const WelcomeMessage = sequelize.define('WelcomeMessage', {
   },
 });
 
+
 sequelize.sync();
 
 module.exports = {
