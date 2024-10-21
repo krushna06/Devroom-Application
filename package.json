@@ -1,0 +1,17 @@
+{
+  "name": "devroom-application",
+  "version": "1.0.0",
+  "description": "The task that was assigned to me while applying at Devroom.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "n0step_",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "sequelize": "^6.37.4",
+    "sqlite3": "^5.1.7"
+  }
+}
