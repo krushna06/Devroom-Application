@@ -16,9 +16,17 @@ const UserData = sequelize.define('UserData', {
   },
 });
 
+const WelcomeMessage = sequelize.define('WelcomeMessage', {
+  message: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+  },
+});
+
 sequelize.sync();
 
 module.exports = {
   UserData,
+  WelcomeMessage,
   sequelize,
 };
