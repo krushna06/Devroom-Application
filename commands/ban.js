@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,12 +12,19 @@ module.exports = {
       option.setName('reason')
         .setDescription('The reason for the ban')
         .setRequired(false)),
+
   async execute(interaction) {
     const member = interaction.options.getMember('target');
     const reason = interaction.options.getString('reason') || 'No reason provided';
 
-    if (!interaction.guild.me.permissions.has('BAN_MEMBERS')) {
+    const botMember = await interaction.guild.members.fetchMe();
+
+    if (!botMember.permissions.has(PermissionsBitField.Flags.BanMembers)) {
       return interaction.reply({ content: 'I do not have permission to ban members.', ephemeral: true });
+    }
+
+    if (!member.bannable) {
+      return interaction.reply({ content: 'I cannot ban this member.', ephemeral: true });
     }
 
     await member.ban({ reason });
