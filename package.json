@@ -9,6 +9,7 @@
   "author": "n0step_",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.3.0",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
     "sequelize": "^6.37.4",
