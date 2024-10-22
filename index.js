@@ -45,14 +45,14 @@ let chalk;
     const rest = new REST({ version: '10' }).setToken(DISCORD_TOKEN);
 
     try {
-      logToFile(`Started refreshing ${commands.length} application (/) commands.`, 'command');
+      logToFile(`Started refreshing ${commands.length} slash commands.`, 'command');
 
       await rest.put(
         Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
         { body: commands }
       );
 
-      logToFile(`Successfully reloaded ${commands.length} application (/) commands.`, 'command');
+      logToFile(`Successfully reloaded ${commands.length} application slash commands.`, 'command');
     } catch (error) {
       logToFile(`Error deploying commands: ${error}`, 'error');
     }
