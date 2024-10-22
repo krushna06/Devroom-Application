@@ -23,11 +23,26 @@ const WelcomeMessage = sequelize.define('WelcomeMessage', {
   },
 });
 
+const Mute = sequelize.define('Mute', {
+  userId: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  muteEndTime: {
+    type: Sequelize.DATE,
+    allowNull: false,
+  },
+  reason: {
+    type: Sequelize.TEXT,
+    allowNull: true,
+  },
+});
 
 sequelize.sync();
 
 module.exports = {
   UserData,
   WelcomeMessage,
+  Mute,
   sequelize,
 };
